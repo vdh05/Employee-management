@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { HandleGetMyLeaves } from "../../redux/Thunks/EmployeeMyDataThunk.js";
+import { apiService } from "../../redux/apis/APIService";
+import { APIsEndPoints } from "../../redux/apis/APIsEndpoints";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
@@ -19,9 +21,8 @@ export default function EmployeeDashboardIndex() {
 	React.useEffect(() => {
 		async function fetchNotices() {
 			try {
-				const res = await fetch("/api/employee/notices"); // Adjust endpoint as needed
-				const data = await res.json();
-				setNotices(data.data || []);
+				const response = await apiService.get(APIsEndPoints.MY_NOTICES, { withCredentials: true });
+				setNotices(response.data?.data || []);
 			} catch {
 				setNotices([]);
 			}
