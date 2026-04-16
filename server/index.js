@@ -22,7 +22,7 @@ import { ConnectDB } from './config/connectDB.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors"
 
-
+app.use(cors());
 dotenv.config()
 const app = express();
 app.use(bodyParser.json())

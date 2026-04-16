@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { apiService } from "../../../redux/apis/apiService"
+import { apiService } from "../../../redux/apis/APIService"
 import { HREndPoints } from "../../../redux/apis/APIsEndpoints"
 import { Loading } from "../../../components/common/loading.jsx"
 import { Card, CardContent } from "@/components/ui/card"

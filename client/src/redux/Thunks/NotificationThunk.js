@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { apiService } from "../apis/apiService";
+import { apiService } from "../apis/APIService";
 import { HRNoticeEndPoints } from "../apis/APIsEndpoints";
 import { setNotifications, addNotification } from "../Slices/NotificationSlice";
 

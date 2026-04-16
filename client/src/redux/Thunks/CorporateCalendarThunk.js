@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { apiService } from "../apis/apiService";
+import { apiService } from "../apis/APIService";
 import { CorporateCalendarEndPoints } from "../apis/APIsEndpoints";
 
 export const HandleGetCorporateCalendarEvents = createAsyncThunk("HandleGetCorporateCalendarEvents", async (_, { rejectWithValue }) => {
