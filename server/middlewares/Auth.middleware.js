@@ -21,7 +21,8 @@ export const VerifyEmployeeToken = (req, res, next) => {
         next()
     } catch (error) {
         console.log("[DEBUG] JWT verification error:", error);
-        return res.status(500).json({ success: false, message: "internal server error", error: error }) 
+        res.clearCookie("EMtoken")
+        return res.status(401).json({ success: false, message: "Unauthorized access", gologin: true })
     }
 }
 
@@ -41,6 +42,7 @@ export const VerifyhHRToken = (req, res, next) => {
         req.Role = decoded.HRrole
         next()
     } catch (error) {
-        return res.status(500).json({ success: false, message: "internal server error", error: error }) 
+        res.clearCookie("HRtoken")
+        return res.status(401).json({ success: false, message: "Unauthorized access", gologin: true })
     }
 }
