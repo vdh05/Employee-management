@@ -49,8 +49,9 @@ export const EmployeeLogin = () => {
         <div className="employee-login-container">
             <LoadingBar ref={loadingbar} />
             <div className="employee-login-content flex justify-center items-center h-[100vh]">
-                <SignIn image={"../../src/assets/Employee-Welcome.jpg"} handlesigninform={handlesigninform} handlesigninsubmit={handlesigninsubmit} targetedstate={EmployeeState} statevalue={signinform} redirectpath={"/auth/employee/forgot-password"} showPassword={showPassword} setShowPassword={setShowPassword} />
+                <SignIn image={"/assets/Employee-Welcome.jpg"} handlesigninform={handlesigninform} handlesigninsubmit={handlesigninsubmit} targetedstate={EmployeeState} statevalue={signinform} redirectpath={"/auth/employee/forgot-password"} showPassword={showPassword} setShowPassword={setShowPassword} />
             </div>
         </div>
     )
 }
+

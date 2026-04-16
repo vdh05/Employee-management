@@ -24,7 +24,7 @@ export function EmployeeSidebar() {
                                 className={({ isActive }) => (isActive ? "bg-blue-200 rounded-lg" : "")}
                             >
                                 <SidebarMenuItem className="flex gap-4 hover:bg-blue-200 rounded-lg">
-                                    <img src="/../../src/assets/HR-Dashboard/dashboard.png" alt="" className="w-7 ms-2 my-1" />
+                                    <img src="/assets/HR-Dashboard/dashboard.png" alt="" className="w-7 ms-2 my-1" />
                                     <span className="text-[16px]">Dashboard</span>
                                 </SidebarMenuItem>
                             </NavLink>
@@ -33,7 +33,7 @@ export function EmployeeSidebar() {
                                 className={({ isActive }) => (isActive ? "bg-blue-200 rounded-lg" : "")}
                             >
                                 <SidebarMenuItem className="flex gap-4 hover:bg-blue-200 rounded-lg my-1">
-                                    <img src="/../../src/assets/HR-Dashboard/Salary.png" alt="" className="w-7 ms-2 my-1" />
+                                    <img src="/assets/HR-Dashboard/Salary.png" alt="" className="w-7 ms-2 my-1" />
                                     <span className="text-[16px]">My Salaries</span>
                                 </SidebarMenuItem>
                             </NavLink>
@@ -42,7 +42,7 @@ export function EmployeeSidebar() {
                                 className={({ isActive }) => (isActive ? "bg-blue-200 rounded-lg" : "")}
                             >
                                 <SidebarMenuItem className="flex gap-4 hover:bg-blue-200 rounded-lg my-1">
-                                    <img src="/../../src/assets/HR-Dashboard/leave.png" alt="" className="w-7 ms-2 my-1" />
+                                    <img src="/assets/HR-Dashboard/leave.png" alt="" className="w-7 ms-2 my-1" />
                                     <span className="text-[16px]">My Leaves</span>
                                 </SidebarMenuItem>
                             </NavLink>
@@ -51,7 +51,7 @@ export function EmployeeSidebar() {
                                 className={({ isActive }) => (isActive ? "bg-blue-200 rounded-lg" : "")}
                             >
                                 <SidebarMenuItem className="flex gap-4 hover:bg-blue-200 rounded-lg my-1">
-                                    <img src="/../../src/assets/HR-Dashboard/attendance.png" alt="" className="w-7 ms-2 my-1" />
+                                    <img src="/assets/HR-Dashboard/attendance.png" alt="" className="w-7 ms-2 my-1" />
                                     <span className="text-[16px]">My Attendance</span>
                                 </SidebarMenuItem>
                             </NavLink>
@@ -81,3 +81,4 @@ export function EmployeeSidebar() {
         </Sidebar>
     );
 }
+

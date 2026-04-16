@@ -30,7 +30,7 @@ export const FormSubmitToast = ({ formdata }) => {
     //         return toast({
     //             title: <p className="text-xl m-1">Success!</p>,
     //             description: <div className="flex justify-center items-center gap-2">
-    //                 <img src="../../src/assets/HR-Dashboard/correct.png" alt="" className="w-8" />
+    //                 <img src="/assets/HR-Dashboard/correct.png" alt="" className="w-8" />
     //                 <p className="font-bold">Employee added successfully.</p>
     //             </div>,
     //         })
@@ -53,7 +53,7 @@ export const FormSubmitToast = ({ formdata }) => {
                     // HREmployeesState.fetchData ? toast({
                     //     title: <p className="text-xl m-1">Success!</p>,
                     //     description: <div className="flex justify-center items-center gap-2">
-                    //         <img src="../../src/assets/HR-Dashboard/correct.png" alt="" className="w-8" />
+                    //         <img src="/assets/HR-Dashboard/correct.png" alt="" className="w-8" />
                     //         <p className="font-bold">Employee added successfully.</p>
                     //     </div>,
                     // }) : null
@@ -65,3 +65,4 @@ export const FormSubmitToast = ({ formdata }) => {
         </>
     )
 }
+

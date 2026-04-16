@@ -6,7 +6,7 @@ export const EntryPage = () => {
         <div className="extry-page-container h-[100vh] flex justify-center items-center">
             <div className="entry-page-content">
                 <div className="entry-image flex flex-col justify-center items-center mb-10 w-auto">
-                    <img src="../../src/assets/Welcome.png" alt="" className="sm:max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg" />
+                    <img src="/assets/welcome.png" alt="" className="sm:max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg" />
                     <h1 className="text-xl text-blue-600 font-bold min-[300px]:text-lg min-[300px]:text-center">Welcome To Employee Management System, Please Select Your Role to Proceed Further</h1>
                 </div>
                 <div className="buttons flex justify-center placeholder:items-center gap-5">
@@ -17,3 +17,4 @@ export const EntryPage = () => {
         </div >
     )
 }
+

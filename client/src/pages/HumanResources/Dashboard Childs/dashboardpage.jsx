@@ -13,22 +13,22 @@ export const HRDashboardPage = () => {
     const dispatch = useDispatch()
     const DataArray = [
         {
-            image: "/../../src/assets/HR-Dashboard/employee-2.png",
+            image: "/assets/HR-Dashboard/employee-2.png",
             dataname: "employees",
             path: "/HR/dashboard/employees"
         },
         {
-            image: "/../../src/assets/HR-Dashboard/department.png",
+            image: "/assets/HR-Dashboard/department.png",
             dataname: "departments",
             path: "/HR/dashboard/departments",
         },
         {
-            image: "/../../src/assets/HR-Dashboard/leave.png",
+            image: "/assets/HR-Dashboard/leave.png",
             dataname: "leaves",
             path: "/HR/dashboard/leaves"
         },
         {
-            image: "/../../src/assets/HR-Dashboard/request.png",
+            image: "/assets/HR-Dashboard/request.png",
             dataname: "requestes",
             path: "/HR/dashboard/requestes"
         }
@@ -59,3 +59,4 @@ export const HRDashboardPage = () => {
         </>
     )
 }
+

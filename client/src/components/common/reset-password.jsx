@@ -12,10 +12,10 @@ export const Reset_Password = ({ handlepasswordsubmit, handlepasswordform, passw
 
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm lg:mx-10">
                     <img
-                        alt="Your Company" src="../../src/assets/resetpassword.png"
+                        alt="Your Company" src="/assets/resetpassword.png"
                         className="mx-auto h-auto w-auto"
                     />
-                    <img src="../../src/assets/welcome.png" alt="" />
+                    <img src="/assets/welcome.png" alt="" />
                 </div>
                 <div className="my-5 sm:mx-auto sm:w-full sm:max-w-sm lg:mx-10">
                     <h2 className="mb-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -85,3 +85,4 @@ export const Reset_Password = ({ handlepasswordsubmit, handlepasswordform, passw
         </>
     )
 }
+
