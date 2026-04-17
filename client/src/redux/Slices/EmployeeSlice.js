@@ -2,6 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { AsyncReducer } from "../AsyncReducers/asyncreducer"
 import { HandlePostEmployees, HandleGetEmployees, HandlePostEmployeeLogout, HandleGetEmployeeProfile } from "../Thunks/EmployeeThunk"
+import { TokenManager } from "../../utils/tokenManager"
 
 const EmployeeSlice = createSlice({
     name: 'employees',
@@ -18,7 +19,48 @@ const EmployeeSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        AsyncReducer(builder, HandlePostEmployees); 
+        // Handle HandlePostEmployees with custom logic for token storage
+        builder
+            .addCase(HandlePostEmployees.pending, (state) => {
+                state.isLoading = true;
+                state.error.content = null;
+            })
+            .addCase(HandlePostEmployees.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error.status = false;
+                state.data = action.payload;
+                
+                // Store token if it's a login response
+                if (action.payload.type === "LOGIN" && action.payload.token) {
+                    TokenManager.setEmployeeToken(action.payload.token);
+                }
+                
+                if (action.payload.resetpassword) {
+                    state.isAuthenticated = false;
+                    state.isResetPasswords = action.payload.success
+                }
+                else {
+                    state.isAuthenticated = action.payload.success;
+                }
+            })
+            .addCase(HandlePostEmployees.rejected, (state, action) => {
+                state.isLoading = false;
+
+                if (action.payload?.gologin) {
+                    // Keep a freshly authenticated session intact; only clear auth on true session checks.
+                    if (!state.isAuthenticated) {
+                        state.isAuthenticated = false;
+                    }
+                    state.error.status = false;
+                    state.error.message = action.payload.message;
+                    state.error.content = action.payload;
+                } else {
+                    state.error.status = true;
+                    state.error.message = action.payload.message;
+                    state.error.content = action.payload;
+                }
+            });
+        
         AsyncReducer(builder, HandleGetEmployees);
         builder
             .addCase(HandleGetEmployeeProfile.pending, (state) => {
@@ -49,12 +91,14 @@ const EmployeeSlice = createSlice({
                 state.isAuthenticated = false;
                 state.data = null;
                 state.error = { status: false, message: null, content: null };
+                TokenManager.clearEmployeeToken();
             })
             .addCase(HandlePostEmployeeLogout.rejected, (state, action) => {
                 state.isLoading = false;
                 // Even if logout fails, clear auth state
                 state.isAuthenticated = false;
                 state.data = null;
+                TokenManager.clearEmployeeToken();
             });
     }
 })

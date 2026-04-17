@@ -133,7 +133,8 @@ export const HandleEmplyoeeLogin = async (req, res) => {
         employee.lastlogin = new Date()
 
         await employee.save()
-        return res.status(200).json({ success: true, message: "Emplyoee Login Successfull" })
+        const token = GenerateJwtTokenAndSetCookiesEmployee(res, employee._id, employee.role, employee.organizationID)
+        return res.status(200).json({ success: true, message: "Emplyoee Login Successfull", type: "LOGIN", token: token, data: employee })
 
     } catch (error) {
         res.status(500).json({ success: false, message: "Internal Server Error", error: error })
