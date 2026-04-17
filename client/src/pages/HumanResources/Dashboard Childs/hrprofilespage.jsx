@@ -24,7 +24,7 @@ export const HRProfilesPage = () => {
             try {
                 setIsLoading(true)
                 setError(null)
-                const response = await apiService.get(HREndPoints.GETALL, { withCredentials: true })
+                const response = await apiService.get(HREndPoints.GETALL)
                 setProfiles(Array.isArray(response.data?.data) ? response.data.data : [])
             } catch (fetchError) {
                 setError(fetchError?.response?.data?.message || "Failed to load HR profiles")

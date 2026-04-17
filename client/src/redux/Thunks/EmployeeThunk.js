@@ -6,9 +6,7 @@ import { APIsEndPoints } from '../apis/APIsEndpoints.js'
 export const HandleGetEmployees = createAsyncThunk("handleGetEmployees", async (EmployeeData, { rejectWithValue }) => {
     try {
         const { apiroute } = EmployeeData
-        const response = await apiService.get(`${APIsEndPoints[apiroute]}`, { 
-            withCredentials: true
-        })
+        const response = await apiService.get(`${APIsEndPoints[apiroute]}`)
         return response.data
     } catch (error) { 
         return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
@@ -18,9 +16,7 @@ export const HandleGetEmployees = createAsyncThunk("handleGetEmployees", async (
 export const HandleGetEmployeeProfile = createAsyncThunk("HandleGetEmployeeProfile", async (EmployeeData, { rejectWithValue }) => {
     try {
         const { apiroute } = EmployeeData
-        const response = await apiService.get(`${APIsEndPoints[apiroute]}`, { 
-            withCredentials: true
-        })
+        const response = await apiService.get(`${APIsEndPoints[apiroute]}`)
         return response.data
     } catch (error) { 
         return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
@@ -31,15 +27,11 @@ export const HandlePostEmployees = createAsyncThunk("HandlePostEmployees", async
     try {
         const { apiroute, data, type } = EmployeeData
         if (type == "resetpassword") {
-            const response = await apiService.post(`${APIsEndPoints.RESET_PASSWORD(apiroute)}`, data, {
-                withCredentials: true
-            })
+            const response = await apiService.post(`${APIsEndPoints.RESET_PASSWORD(apiroute)}`, data)
             return response.data
         }
         else {
-            const response = await apiService.post(`${APIsEndPoints[apiroute]}`, data, {
-                withCredentials: true
-            })
+            const response = await apiService.post(`${APIsEndPoints[apiroute]}`, data)
             return response.data
         }
     } catch (error) {
@@ -49,9 +41,7 @@ export const HandlePostEmployees = createAsyncThunk("HandlePostEmployees", async
 
 export const HandlePostEmployeeLogout = createAsyncThunk("HandlePostEmployeeLogout", async (_, { rejectWithValue }) => {
     try {
-        const response = await apiService.post(`${APIsEndPoints.LOGOUT}`, {}, {
-            withCredentials: true
-        })
+        const response = await apiService.post(`${APIsEndPoints.LOGOUT}`, {})
         return response.data
     } catch (error) {
         return rejectWithValue(error.response?.data || { message: "Logout failed" });

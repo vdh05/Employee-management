@@ -6,8 +6,7 @@ export const HandleGetHumanResources = createAsyncThunk("HandleGetHumanResources
     try {
         const { apiroute, email } = HRData;
         const response = await apiService.get(`${HREndPoints[apiroute]}`, {
-            params: email ? { email } : undefined,
-            withCredentials: true
+            params: email ? { email } : undefined
         });
         return response.data;
     }
@@ -20,15 +19,11 @@ export const HandlePostHumanResources = createAsyncThunk("HandlePostHumanResourc
     try {
         const { apiroute, data, type } = HRData
         if (type == "resetpassword") {
-            const response = await apiService.post(`${HREndPoints.RESET_PASSWORD(apiroute)}`, data, {
-                withCredentials: true
-            })
+            const response = await apiService.post(`${HREndPoints.RESET_PASSWORD(apiroute)}`, data)
             return response.data
         }
         else {
-            const response = await apiService.post(`${HREndPoints[apiroute]}`, data, {
-                withCredentials: true
-            })
+            const response = await apiService.post(`${HREndPoints[apiroute]}`, data)
             if (response.status === 200 || response.status === 201) {
                 return response.data
             } else {

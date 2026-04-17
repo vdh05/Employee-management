@@ -55,9 +55,9 @@ export const HRRecruitmentPage = () => {
             setError(null)
 
             const [recruitmentResponse, applicantResponse, departmentResponse] = await Promise.all([
-                apiService.get(RecruitmentEndPoints.GETALL, { withCredentials: true }),
-                apiService.get(ApplicantEndPoints.GETALL, { withCredentials: true }),
-                apiService.get(HRDepartmentPageEndPoints.GETALL, { withCredentials: true }),
+                apiService.get(RecruitmentEndPoints.GETALL),
+                apiService.get(ApplicantEndPoints.GETALL),
+                apiService.get(HRDepartmentPageEndPoints.GETALL),
             ])
 
             setRecruitments(Array.isArray(recruitmentResponse.data?.data) ? recruitmentResponse.data.data : [])
@@ -156,7 +156,7 @@ export const HRRecruitmentPage = () => {
     const handleDeleteRecruitment = async () => {
         if (!selectedRecruitment) return
 
-        await apiService.delete(RecruitmentEndPoints.DELETE(selectedRecruitment._id), { withCredentials: true })
+        await apiService.delete(RecruitmentEndPoints.DELETE(selectedRecruitment._id))
         setIsDeleteOpen(false)
         setSelectedRecruitment(null)
         await loadRecruitmentData()

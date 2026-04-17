@@ -21,7 +21,7 @@ export default function EmployeeDashboardIndex() {
 	React.useEffect(() => {
 		async function fetchNotices() {
 			try {
-				const response = await apiService.get(APIsEndPoints.MY_NOTICES, { withCredentials: true });
+				const response = await apiService.get(APIsEndPoints.MY_NOTICES);
 				setNotices(response.data?.data || []);
 			} catch {
 				setNotices([]);

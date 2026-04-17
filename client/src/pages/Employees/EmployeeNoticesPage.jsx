@@ -17,7 +17,7 @@ export const EmployeeNoticesPage = () => {
     const fetchNotices = async () => {
         try {
             setIsLoading(true)
-            const response = await apiService.get(APIsEndPoints.MY_NOTICES, { withCredentials: true })
+            const response = await apiService.get(APIsEndPoints.MY_NOTICES)
             setNotices(response.data?.data || [])
             setError(null)
         } catch (err) {
