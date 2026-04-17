@@ -35,7 +35,7 @@ export const HRRoutes = [
         element: <HRDashbaord />,
         children: [
             {
-                path: "/HR/dashboard/dashboard-data",
+                index: true,
                 element: <HRDashboardPage />
             },
             {

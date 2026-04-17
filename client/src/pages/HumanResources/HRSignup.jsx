@@ -76,7 +76,7 @@ export const HRSignupPage = () => {
             if (loadingbar.current) {
                 loadingbar.current.complete()
             }
-            navigate("/HR/dashboard/dashboard-data")
+            navigate("/HR/dashboard")
         } else if (HRState.isAuthenticated && !HRState.isVerified) {
             if (loadingbar.current) {
                 loadingbar.current.complete()
