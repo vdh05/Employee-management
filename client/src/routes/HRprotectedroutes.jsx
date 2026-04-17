@@ -13,7 +13,6 @@ export const HRProtectedRoutes = ({ children }) => {
     useEffect(() => {
         if (!HRState.isAuthenticated && !HRState.isAuthourized && !HRState.isVerified && !HRState.error.content) {
             dispatch(HandleGetHumanResources({ apiroute: "CHECKLOGIN" }))
-            dispatch(HandleGetHumanResources({ apiroute: "CHECK_VERIFY_EMAIL" }))
         }
 
         if (HRState.isAuthenticated && HRState.isAuthourized && !HRState.isVerified && HRState.error.content) {

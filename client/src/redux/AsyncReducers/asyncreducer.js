@@ -101,35 +101,37 @@ export const HRAsyncReducer = (builder, thunk) => {
             }
         })
         .addCase(thunk.rejected, (state, action) => {
-            if (action.payload.type == "signup") {
+            const payload = action.payload || { message: action.error?.message || "Request failed" };
+
+            if (payload.type == "signup") {
                 state.isSignUp = false
                 state.isLoading = false;
                 state.error.status = true;
-                state.error.message = action.payload.message
-                state.error.content = action.payload
+                state.error.message = payload.message
+                state.error.content = payload
             }
-            if (action.payload.type == "HRcodeavailable") {
+            if (payload.type == "HRcodeavailable") {
                 // state.isSignUp = true
                 state.isLoading = false;
                 // state.isAuthenticated = true
                 state.isVerified = false
                 state.isVerifiedEmailAvailable = false
                 state.error.status = false;
-                state.error.content = action.payload
+                state.error.content = payload
             }
-            if (action.payload.gologin) {
+            if (payload.gologin) {
                 state.isSignUp = false
                 state.isLoading = false;
                 state.isAuthenticated = false
                 state.error.status = false;
-                state.error.message = action.payload.message
-                state.error.content = action.payload
+                state.error.message = payload.message
+                state.error.content = payload
             }
             else {
                 state.isLoading = false;
                 state.error.status = true;
-                state.error.message = action.payload.message
-                state.error.content = action.payload
+                state.error.message = payload.message
+                state.error.content = payload
             }
         });
 }

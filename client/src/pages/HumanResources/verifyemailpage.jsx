@@ -27,7 +27,7 @@ export const VerifyEmailPage = () => {
     }
 
     useEffect(() => {
-        if (!HRState.isVerified) {
+        if (HRState.isAuthenticated && HRState.isAuthourized && !HRState.isVerified) {
             dispatch(HandleGetHumanResources({ apiroute: "CHECK_VERIFY_EMAIL" }))
         }
 
@@ -39,7 +39,7 @@ export const VerifyEmailPage = () => {
             loadingbar.current.complete()
             navigate("/auth/HR/dashboard") 
         }
-    }, [HRState.isVerified, HRState.isVerifiedEmailAvailable, HRState.error.content])
+    }, [HRState.isAuthenticated, HRState.isAuthourized, HRState.isVerified, HRState.isVerifiedEmailAvailable, HRState.error.content])
 
     // console.log(HRState)
     // console.log(HRState.isVerified)
