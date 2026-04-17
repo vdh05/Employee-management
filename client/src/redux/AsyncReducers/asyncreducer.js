@@ -20,8 +20,8 @@ export const AsyncReducer = (builder, thunk) => {
             state.isLoading = false;
 
             if (action.payload?.gologin) {
-                // Session expired or unauthorized: mark as logged out
-                if (typeof state.isAuthenticated === "boolean") {
+                // Keep a freshly authenticated session intact; only clear auth on true session checks.
+                if (!state.isAuthenticated) {
                     state.isAuthenticated = false;
                 }
                 state.error.status = false;
