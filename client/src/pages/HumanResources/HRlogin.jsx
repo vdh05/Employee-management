@@ -33,10 +33,8 @@ export const HRLogin = () => {
     }
 
     useEffect(() => {
-        if (!HRState.isAuthenticated) {
-            dispatch(HandleGetHumanResources({ apiroute: "CHECKLOGIN" }))
-        }
-
+        // Only redirect if already authenticated in Redux state
+        // Don't call CHECKLOGIN here - that belongs in protected routes
         if (HRState.isAuthenticated) {
             loadingbar.current.complete()
             navigate("/auth/HR/dashboard")
