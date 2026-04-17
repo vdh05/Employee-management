@@ -36,7 +36,10 @@ const EmployeeSlice = createSlice({
                 state.error.status = true;
                 state.error.message = action.payload?.message || "Failed to fetch profile";
                 state.data = null;
-                state.isAuthenticated = false;
+                // Keep an already authenticated session intact; do not force logout on a transient profile fetch failure.
+                if (!state.isAuthenticated) {
+                    state.isAuthenticated = false;
+                }
             })
             .addCase(HandlePostEmployeeLogout.pending, (state) => {
                 state.isLoading = true;
