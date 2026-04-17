@@ -11,16 +11,15 @@ export const HandleGetHumanResources = createAsyncThunk("HandleGetHumanResources
         return response.data;
     }
     catch (error) {
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
     }
 })
-
 
 export const HandlePostHumanResources = createAsyncThunk("HandlePostHumanResources", async (HRData, { rejectWithValue }) => {
     try {
         const { apiroute, data, type } = HRData
         if (type == "resetpassword") {
-            const response = await apiService.post(`${HREndPoints.RESET_PASSWORD(apiroute)}`, data, { 
+            const response = await apiService.post(`${HREndPoints.RESET_PASSWORD(apiroute)}`, data, {
                 withCredentials: true
             })
             return response.data
@@ -30,13 +29,13 @@ export const HandlePostHumanResources = createAsyncThunk("HandlePostHumanResourc
                 withCredentials: true
             })
             if (response.status === 200 || response.status === 201) {
-                return response.data 
+                return response.data
             } else {
                 return rejectWithValue(response.data);
             }
         }
     } catch (error) {
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
     }
 })
 

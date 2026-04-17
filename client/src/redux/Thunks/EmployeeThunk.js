@@ -11,7 +11,7 @@ export const HandleGetEmployees = createAsyncThunk("handleGetEmployees", async (
         })
         return response.data
     } catch (error) { 
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
     }
 })
 
@@ -23,7 +23,7 @@ export const HandleGetEmployeeProfile = createAsyncThunk("HandleGetEmployeeProfi
         })
         return response.data
     } catch (error) { 
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
     }
 })
 
@@ -43,7 +43,7 @@ export const HandlePostEmployees = createAsyncThunk("HandlePostEmployees", async
             return response.data
         }
     } catch (error) {
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response?.data || { message: error.message || "Request failed" });
     }
 })
 
