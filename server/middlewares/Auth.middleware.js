@@ -29,9 +29,10 @@ export const VerifyEmployeeToken = (req, res, next) => {
         req.EMid = decoded.EMid
         req.EMrole = decoded.EMrole
         req.ORGID = decoded.ORGID
+        console.log("[DEBUG] Auth successful - EMid:", req.EMid, "ORGID:", req.ORGID);
         next()
     } catch (error) {
-        console.log("[DEBUG] JWT verification error:", error);
+        console.log("[DEBUG] JWT verification error:", error.message);
         res.clearCookie("EMtoken")
         return res.status(401).json({ success: false, message: "Unauthorized access", gologin: true })
     }

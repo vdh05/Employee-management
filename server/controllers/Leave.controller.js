@@ -59,10 +59,19 @@ export const HandleAllLeaves = async (req, res) => {
 
 export const HandleMyLeaves = async (req, res) => {
     try {
+        console.log("[DEBUG] HandleMyLeaves - req.EMid:", req.EMid, "req.ORGID:", req.ORGID);
+        
+        if (!req.EMid || !req.ORGID) {
+            console.log("[DEBUG] Missing EMid or ORGID");
+            return res.status(401).json({ success: false, message: "Unauthorized - Missing credentials" })
+        }
+        
         const leaves = await Leave.find({ employee: req.EMid, organizationID: req.ORGID }).populate("approvedby", "firstname lastname").sort({ createdAt: -1 })
+        console.log("[DEBUG] Found leaves:", leaves.length);
         return res.status(200).json({ success: true, message: "My leave records retrieved successfully", data: leaves })
     } catch (error) {
-        return res.status(500).json({ success: false, message: "Internal server error" })
+        console.log("[DEBUG] HandleMyLeaves error:", error.message);
+        return res.status(500).json({ success: false, message: "Internal server error", error: error.message })
     }
 }
 
