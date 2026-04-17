@@ -1,3 +1,5 @@
+import { TokenManager } from '../../utils/tokenManager.js';
+
 export const AsyncReducer = (builder, thunk) => {
     builder
         .addCase(thunk.pending, (state) => {
@@ -58,6 +60,11 @@ export const HRAsyncReducer = (builder, thunk) => {
                 state.isAuthourized = true
                 state.error.status = false;
                 state.data = action.payload;
+                
+                // Store token if it's a login response
+                if (action.payload.type === "HRLogin" && action.payload.token) {
+                    TokenManager.setHRToken(action.payload.token);
+                }
             }
             if (action.payload.type == "HRverifyemail") {
                 state.isSignUp = true
