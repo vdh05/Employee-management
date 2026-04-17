@@ -27,15 +27,34 @@ const app = express();
 app.use(bodyParser.json())
 app.use(cookieParser())
 
+const normalizeOrigin = (value) => {
+  if (!value) {
+    return null
+  }
+
+  try {
+    return new URL(value).origin
+  } catch {
+    return value.replace(/\/$/, "")
+  }
+}
+
 const allowedOrigins = [
   process.env.CLIENT_URL,
+  process.env.FRONTEND_URL,
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-].filter(Boolean)
+].map(normalizeOrigin).filter(Boolean)
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    const normalizedOrigin = normalizeOrigin(origin)
+
+    if (
+      !normalizedOrigin ||
+      allowedOrigins.includes(normalizedOrigin) ||
+      normalizedOrigin.endsWith(".onrender.com")
+    ) {
       return callback(null, true)
     }
     return callback(new Error("Not allowed by CORS"))
