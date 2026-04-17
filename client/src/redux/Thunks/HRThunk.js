@@ -4,8 +4,9 @@ import { HREndPoints } from "../apis/APIsEndpoints";
 
 export const HandleGetHumanResources = createAsyncThunk("HandleGetHumanResources", async (HRData, { rejectWithValue }) => {
     try {
-        const { apiroute } = HRData;
+        const { apiroute, email } = HRData;
         const response = await apiService.get(`${HREndPoints[apiroute]}`, {
+            params: email ? { email } : undefined,
             withCredentials: true
         });
         return response.data;

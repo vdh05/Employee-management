@@ -89,9 +89,17 @@ export const HandleHRSignup = async (req, res) => {
 }
 
 export const HandleHRVerifyEmail = async (req, res) => {
-    const { verificationcode } = req.body
+    const { verificationcode, email } = req.body
     try {
-        const HR = await HumanResources.findOne({ verificationtoken: verificationcode, organizationID: req.ORGID, verificationtokenexpires: { $gt: Date.now() } })
+        if (!verificationcode || !email) {
+            return res.status(400).json({ success: false, message: "Email and verification code are required", type: "HRverifyemail" })
+        }
+
+        const HR = await HumanResources.findOne({
+            email: email.toLowerCase().trim(),
+            verificationtoken: verificationcode,
+            verificationtokenexpires: { $gt: Date.now() }
+        })
 
         if (!HR) {
             return res.status(401).json({ success: false, message: "Invalid or Expired Verifiation Code", type: "HRverifyemail" })
@@ -248,7 +256,17 @@ export const HandleHRResetverifyEmail = async (req, res) => {
 
 export const HandleHRcheckVerifyEmail = async (req, res) => {
     try {
-        const HR = await HumanResources.findOne({ _id: req.HRid, organizationID: req.ORGID })
+        const { email } = req.query
+
+        if (!email) {
+            return res.status(400).json({ success: false, message: "Email is required", type: "HRcodeavailable" })
+        }
+
+        const HR = await HumanResources.findOne({ email: email.toLowerCase().trim() })
+
+        if (!HR) {
+            return res.status(404).json({ success: false, message: "HR not found", type: "HRcodeavailable" })
+        }
 
         if (HR.isverified) {
             return res.status(200).json({ sucess: true, message: "HR Already Verified", type: "HRcodeavailable", alreadyverified: true })

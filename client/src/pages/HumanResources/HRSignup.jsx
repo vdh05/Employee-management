@@ -81,7 +81,7 @@ export const HRSignupPage = () => {
             if (loadingbar.current) {
                 loadingbar.current.complete()
             }
-            navigate("/auth/HR/verify-email")
+            navigate(`/auth/HR/verify-email?email=${encodeURIComponent(formData.email)}`)
         }
     }, [HRState.isAuthenticated, HRState.isVerified, signupSubmitted])
 
