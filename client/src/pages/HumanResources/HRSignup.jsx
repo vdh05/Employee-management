@@ -13,6 +13,7 @@ export const HRSignupPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const loadingbar = useRef(null)
+    const [submittedEmail, setSubmittedEmail] = useState("")
     const [signupform, set_signuform] = useState({
         firstname: "",
         lastname: "",
@@ -49,6 +50,7 @@ export const HRSignupPage = () => {
         }
         if (formData.textpassword === formData.password) {
             seterrorpopup(false)
+            setSubmittedEmail(formData.email)
             if (loadingbar.current) {
                 loadingbar.current.continuousStart();
             }
@@ -81,9 +83,9 @@ export const HRSignupPage = () => {
             if (loadingbar.current) {
                 loadingbar.current.complete()
             }
-            navigate(`/auth/HR/verify-email?email=${encodeURIComponent(formData.email)}`)
+            navigate(`/auth/HR/verify-email?email=${encodeURIComponent(submittedEmail)}`)
         }
-    }, [HRState.isAuthenticated, HRState.isVerified, signupSubmitted])
+    }, [HRState.isAuthenticated, HRState.isVerified, signupSubmitted, submittedEmail])
 
     // console.log(signupform)
     // console.log(HRState)
